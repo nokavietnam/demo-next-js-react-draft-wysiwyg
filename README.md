@@ -32,3 +32,67 @@ You can check out [the Next.js GitHub repository](https://github.com/vercel/next
 The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
 
 Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+
+## Add react-draft-wisiwyg
+
+```bash
+npm install -S react-draft-wysiwyg
+## or
+yarn add react-draft-wysiwyg
+```
+
+## Import
+
+```bash
+import { useState } from "react"
+
+import dynamic from "next/dynamic"
+import "react-draft-wysiwyg/dist/react-draft-wysiwyg.css"
+```
+
+## import No SSR
+
+```bash
+const EditorState = dynamic(
+  import("draft-js").then((mode) => mode.EditorState),
+  {
+    ssr: false,
+    loading: function loading() {
+      return <div>Lodding.....</div>;
+    },
+  }
+);
+
+const Editor = dynamic(
+  import("react-draft-wysiwyg").then((mod) => mod.Editor),
+  {
+    ssr: false,
+    loading: function loading() {
+      return <div>Loading......</div>;
+    },
+  }
+);
+```
+
+## Demo
+
+```bash
+const [editorState, setEditorState] = useState(EditorState.createEmpty);
+
+  const onEditorStateChange = (editorState) => {
+    setEditorState(editorState);
+  };
+
+  return (
+    <div className="">
+      <Editor
+        editorState={editorState}
+        wrapperClassName="demo-wrapper"
+        editorClassName="demo-editor"
+        onEditorStateChange={onEditorStateChange}
+      />
+    </div>
+  );
+```
+
+### Finish
