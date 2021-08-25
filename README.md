@@ -17,9 +17,9 @@ You can start editing the page by modifying `pages/post/index.js`. The page auto
 ## Add react-draft-wisiwyg
 
 ```bash
-npm install -S react-draft-wysiwyg
+npm install -S react-draft-wysiwyg draft-js
 ## or
-yarn add react-draft-wysiwyg
+yarn add react-draft-wysiwyg draft-js
 ```
 
 ## Import
